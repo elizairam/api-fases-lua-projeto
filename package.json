@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/elizairam/moon-sign-calculator/issues"
   },
-  "homepage": "https://github.com/elizairam/moon-sign-calculator#readme"
+  "homepage": "https://github.com/elizairam/moon-sign-calculator#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
