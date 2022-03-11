@@ -50,9 +50,9 @@ app.get("/luas/atual", (req, res) => {
   const mes = Number(formatoData[(3, 3)] + formatoData[(3, 4)]);
   const ano = Number(
     formatoData[(6, 6)] +
-    formatoData[(6, 7)] +
-    formatoData[(7, 8)] +
-    formatoData[(7, 8)]
+      formatoData[(6, 7)] +
+      formatoData[(7, 8)] +
+      formatoData[(7, 8)]
   );
 
   const mesConvertido = ConverterMes(mes);
@@ -60,7 +60,7 @@ app.get("/luas/atual", (req, res) => {
   const filtroData = importData.luas
     .filter((el) => el.ano == ano)
     .filter((el) => el.mes == mesConvertido)
-    .filter((el) => (dia > 5 ? el.dia <= dia : el.dia >= dia));
+    .filter((el) => el.dia <= dia);
 
   const diasProximos = filtroData.map((el) => el.dia);
   const diaProximo = Math.max(...diasProximos);
@@ -79,13 +79,49 @@ app.get("/luas/ano/:ano", (req, res) => {
   res.send(data);
 });
 
-// filtrar por ano/mes/dia
+// filtrar por ano e mês
+app.get("/luas/ano/:ano/mes/:mes", (req, res) => {
+  const { ano, mes } = req.params;
+  const data = importData.luas
+    .filter((el) => el.ano == ano)
+    .filter((el) => el.mes == mes);
+  res.send(data);
+});
+
+// filtrar por ano, mês e dia
 app.get("/luas/ano/:ano/mes/:mes/dia/:dia", (req, res) => {
   const { ano, mes, dia } = req.params;
+  const filtroData = importData.luas
+    .filter((el) => el.ano == ano)
+    .filter((el) => el.mes == mes)
+    .filter((el) => el.dia <= dia);
+
+  const diasProximos = filtroData.map((el) => el.dia);
+  const diaProximo = Math.max(...diasProximos);
+
   const data = importData.luas
     .filter((el) => el.ano == ano)
     .filter((el) => el.mes == mes)
-    .filter((el) => el.dia == dia);
+    .filter((el) => el.dia == diaProximo);
+  res.send(data);
+});
+
+// filtrar por ano e fase lunar
+app.get("/luas/ano/:ano/fase-lunar/:fase", (req, res) => {
+  const { ano, fase } = req.params;
+  const data = importData.luas
+    .filter((el) => el.ano == ano)
+    .filter((el) => el.fase_lunar == 'lua ' + fase);
+  res.send(data);
+});
+
+// filtrar por ano, mês e fase lunar
+app.get("/luas/ano/:ano/mes/:mes/fase-lunar/:fase", (req, res) => {
+  const { ano, mes, fase } = req.params;
+  const data = importData.luas
+    .filter((el) => el.ano == ano)
+    .filter((el) => el.mes == mes)
+    .filter((el) => el.fase_lunar == 'lua ' + fase);
   res.send(data);
 });
 
