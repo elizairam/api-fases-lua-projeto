@@ -26,6 +26,14 @@
     },
     {
       "ano": 1905,
+      "mes": "abril",
+      "dia": 26,
+      "hora": "11:13",
+      "simbolo_lunar": "🌗",
+      "fase_lunar": "lua minguante"
+    },
+    {
+      "ano": 1905,
       "mes": "maio",
       "dia": 4,
       "hora": "15:50",
@@ -39,14 +47,6 @@
       "hora": "06:46",
       "simbolo_lunar": "🌓",
       "fase_lunar": "lua crescente"
-    },
-    {
-      "ano": 1905,
-      "mes": "abril",
-      "dia": 26,
-      "hora": "11:13",
-      "simbolo_lunar": "🌗",
-      "fase_lunar": "lua minguante"
     },
     {
       "ano": 1905,
