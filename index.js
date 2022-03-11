@@ -2,7 +2,15 @@ const express = require("express");
 const app = express();
 const importData = require("./data.json");
 const service = require("./service.js");
+const cors = require("cors");
 let port = process.env.PORT || 3000;
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET");
+  app.use(cors());
+  next();
+})
 
 app.get("/", (req, res) => {
   res.send("🌕 API fases lunares (1905-2099) 📆");
