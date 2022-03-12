@@ -43,11 +43,13 @@ app.get("/luas/atual", (req, res) => {
     .filter((el) => el.dia == diaProximo);
 
   if (filtroData == false) {
-    // quando a fase lunar for continuação do mês anterior e não tiver dados para o mês vigente
+    // quando a fase lunar for continuação do mês anterior não tem dados para o mês vigente
+    // a condicional traz os dados da última fase no mês anterior 
 
     const mesAnterior = service.ConverterMesParaNome(
       service.ConverterMesParaNumero(mes) - 1
     );
+
     const filtroMesAnterior = importData.luas
       .filter((el) => el.ano == ano)
       .filter((el) => el.mes == mesAnterior)
@@ -114,7 +116,6 @@ app.get("/luas/ano/:ano/mes/:mes/dia/:dia", (req, res) => {
     .filter((el) => el.dia == diaProximo);
 
   if (filtroData == false) {
-    // quando a fase lunar for continuação do mês anterior
 
     const mesAnterior = service.ConverterMesParaNome(
       service.ConverterMesParaNumero(mes) - 1
