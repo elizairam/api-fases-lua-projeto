@@ -10,7 +10,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET");
   app.use(cors());
   next();
-})
+});
 
 app.get("/", (req, res) => {
   res.send("🌕 API fases lunares (1905-2099) 📆");
@@ -63,6 +63,20 @@ app.get("/luas/atual", (req, res) => {
 
     res.send(data);
   }
+  res.send(data);
+});
+
+// mostrar lunações do mês atual
+app.get("/luas/atual/mes", (req, res) => {
+  const dataAtual = new Date();
+  const mes = service.DataFormatacaoMes(dataAtual);
+  const ano = service.DataFormatacaoAno(dataAtual);
+  const mesConvertido = service.ConverterMesParaNome(mes);
+
+  const data = importData.luas
+    .filter((el) => el.ano == ano)
+    .filter((el) => el.mes == mesConvertido)
+
   res.send(data);
 });
 
