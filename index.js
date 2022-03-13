@@ -43,9 +43,6 @@ app.get("/luas/atual", (req, res) => {
     .filter((el) => el.dia == diaProximo);
 
   if (filtroData == false) {
-    // quando a fase lunar for continuação do mês anterior não tem dados para o mês vigente
-    // a condicional traz os dados da última fase no mês anterior 
-
     const mesAnterior = service.ConverterMesParaNome(
       service.ConverterMesParaNumero(mes) - 1
     );
@@ -65,6 +62,25 @@ app.get("/luas/atual", (req, res) => {
 
     res.send(data);
   }
+
+  if (filtroData == false && mesConvertido === "janeiro") {
+    const mesAnterior = "dezembro";
+    const filtroMesAnterior = importData.luas
+      .filter((el) => el.ano == ano)
+      .filter((el) => el.mes == mesAnterior)
+      .filter((el) => el.dia > dia);
+
+    const diasProximos = filtroMesAnterior.map((el) => el.dia);
+    const diaProximo = Math.max(...diasProximos);
+
+    const data = importData.luas
+      .filter((el) => el.ano == ano)
+      .filter((el) => el.mes == mesAnterior)
+      .filter((el) => el.dia == diaProximo);
+
+    res.send(data);
+  }
+
   res.send(data);
 });
 
@@ -77,7 +93,7 @@ app.get("/luas/atual/mes", (req, res) => {
 
   const data = importData.luas
     .filter((el) => el.ano == ano)
-    .filter((el) => el.mes == mesConvertido)
+    .filter((el) => el.mes == mesConvertido);
 
   res.send(data);
 });
@@ -115,11 +131,29 @@ app.get("/luas/ano/:ano/mes/:mes/dia/:dia", (req, res) => {
     .filter((el) => el.mes == mes)
     .filter((el) => el.dia == diaProximo);
 
-  if (filtroData == false) {
-
+  if (filtroData == false && mes !== "janeiro") {
     const mesAnterior = service.ConverterMesParaNome(
       service.ConverterMesParaNumero(mes) - 1
     );
+    const filtroMesAnterior = importData.luas
+      .filter((el) => el.ano == ano)
+      .filter((el) => el.mes == mesAnterior)
+      .filter((el) => el.dia > dia);
+
+    const diasProximos = filtroMesAnterior.map((el) => el.dia);
+    const diaProximo = Math.max(...diasProximos);
+
+    const data = importData.luas
+      .filter((el) => el.ano == ano)
+      .filter((el) => el.mes == mesAnterior)
+      .filter((el) => el.dia == diaProximo);
+
+    res.send(data);
+  }
+
+  if (filtroData == false && mes === "janeiro") {
+    const mesAnterior = "dezembro";
+
     const filtroMesAnterior = importData.luas
       .filter((el) => el.ano == ano)
       .filter((el) => el.mes == mesAnterior)
