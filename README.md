@@ -161,5 +161,6 @@
 ```
 /luas/ano/:ano/mes/:mes/fase-lunar/:fase
 ```
-
+## Referências
+### Swiss Ephemeris for Users [Astrodienst](https://www.astro.com/swisseph/swepha_e.htm)
 
