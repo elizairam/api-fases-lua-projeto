@@ -153,7 +153,7 @@
         "fase_lunar": "lua minguante"
     }
 ]
-
+```
 ## Referência 📖
 ### Swiss Ephemeris for Users [Astrodienst](https://www.astro.com/swisseph/swepha_e.htm)
 
