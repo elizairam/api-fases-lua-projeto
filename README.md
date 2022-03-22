@@ -96,6 +96,7 @@
 #### ex. de resposta para o ano de 1990 e mês de novembro:
 ```
 /luas/ano/{ano}/mes/{mes}
+/luas/ano/1990/mes/novembro
 ```
 
 ```
@@ -139,6 +140,7 @@
 #### ex. de resposta para o ano de 1990, mês de novembro e dia 10:
 ```
 /luas/ano/{ano}/mes/{mes}/dia/{dia}
+/luas/ano/1990/mes/novembro/dia/10
 ```
 ```
 [
@@ -151,16 +153,7 @@
         "fase_lunar": "lua minguante"
     }
 ]
-```
-#### Retorna a fase lunar especificada para um ano especificado
-#### Para fase lunar aceita parâmetros= { "lua nova"; "lua crescente"; "lua cheia"; "lua minguante"}  
-```
-/luas/ano/{ano}/fase-lunar/{fase lunar}
-```
-#### Retorna a fase lunar especificada para um ano e mês especificado
-```
-/luas/ano/:ano/mes/:mes/fase-lunar/:fase
-```
+
 ## Referência 📖
 ### Swiss Ephemeris for Users [Astrodienst](https://www.astro.com/swisseph/swepha_e.htm)
 
